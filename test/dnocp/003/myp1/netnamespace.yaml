@@ -1,0 +1,8 @@
+apiVersion: network.openshift.io/v1
+egressIPs:
+- 172.24.224.1
+kind: NetNamespace
+metadata:
+  name: myp1
+netname: myp1
+netid: 419363
