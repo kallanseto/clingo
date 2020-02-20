@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    ing.com.au/team: team5
+    ing.com.au/email: appsupport5@test.com
+    ing.com.au/owner: owner5
+    ing.com.au/service: open banking
+    ing.com.au/application: ob app5
+    ing.com.au/domain: product
+  labels:
+    application: ob app5
+    service: open banking
+    domain: product
+  name: project5
