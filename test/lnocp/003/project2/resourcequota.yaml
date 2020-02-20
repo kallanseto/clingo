@@ -4,5 +4,5 @@ metadata:
   name: compute
 spec:
   hard:
-    cpu: 6
-    memory: 64Gi
+    cpu: 5
+    memory: 55Gi

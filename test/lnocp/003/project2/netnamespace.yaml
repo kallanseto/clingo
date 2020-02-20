@@ -1,8 +1,8 @@
 apiVersion: network.openshift.io/v1
 egressIPs:
-- 172.24.130.171
+- 172.24.130.174
 kind: NetNamespace
 metadata:
-  name: myproject
-netname: myproject
-netid: 190023
+  name: project2
+netname: project2
+netid: 630557

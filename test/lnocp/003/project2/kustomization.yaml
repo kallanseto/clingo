@@ -1,4 +1,4 @@
-namespace: myproject
+namespace: project2
 commonLabels:
   prometheus: appdeployment
 resources:
