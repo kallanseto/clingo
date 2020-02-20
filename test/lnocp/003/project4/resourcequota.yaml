@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute
+spec:
+  hard:
+    cpu: 4
+    memory: 44Gi
