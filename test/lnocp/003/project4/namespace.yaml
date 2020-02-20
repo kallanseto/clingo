@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    ing.com.au/team: team4
+    ing.com.au/email: appsupport4@test.com
+    ing.com.au/owner: owner4
+    ing.com.au/service: 
+    ing.com.au/application: 
+    ing.com.au/domain: 
+  labels:
+    application: 
+    service: 
+    domain: 
+  name: project4

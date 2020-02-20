@@ -1,0 +1,8 @@
+apiVersion: network.openshift.io/v1
+egressIPs:
+- 172.24.130.171
+kind: NetNamespace
+metadata:
+  name: project4
+netname: project4
+netid: 190023
