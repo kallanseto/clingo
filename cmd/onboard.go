@@ -13,17 +13,19 @@ import (
 
 // Project details for onboarding
 type Project struct {
-	Name        string `json: "name"`
-	Team        string `json: "team"`
-	Email       string `json: "email"`
-	Owner       string `json: "owner"`
-	Service     string `json: "service"`
-	Application string `json: "application"`
-	Domain      string `json: "domain"`
-	CPU         int    `json: "cpu"`
-	Memory      int    `json: "memory"`
-	Egressip    string `json: "egressip"`
-	Netid       string `json: "netid"`
+	Name         string `json: "name"`
+	Team         string `json: "team"`
+	Email        string `json: "email"`
+	Owner        string `json: "owner"`
+	Service      string `json: "service"`
+	Application  string `json: "application"`
+	Domain       string `json: "domain"`
+	CPU          int    `json: "cpu"`
+	Memory       int    `json: "memory"`
+	Egressip     string `json: "egressip"`
+	Netid        string `json: "netid"`
+	Snatip       string `json: "snatip"`
+	Namespacevip string `json: "namespacevip"`
 }
 
 func (p Project) newProjectDir(BASEDIR string) error {
@@ -87,6 +89,8 @@ metadata:
     ing.com.au/service: ` + p.Service + `
     ing.com.au/application: ` + p.Application + `
     ing.com.au/domain: ` + p.Domain + `
+    ing.com.au/snatip: ` + p.Snatip + `
+    ing.com.au/namespacevip: ` + p.Namespacevip + `
   labels:
     application: ` + p.Application + `
     service: ` + p.Service + `

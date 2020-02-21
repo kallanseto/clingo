@@ -25,6 +25,8 @@ var createCmd = &cobra.Command{
 		domain, _ := cmd.Flags().GetString("domain")
 		team, _ := cmd.Flags().GetString("team")
 		email, _ := cmd.Flags().GetString("email")
+		namespacevip, _ := cmd.Flags().GetString("namespacevip")
+		snatip, _ := cmd.Flags().GetString("snatip")
 		cpu, _ := cmd.Flags().GetInt("cpu")
 		memory, _ := cmd.Flags().GetInt("memory")
 
@@ -38,17 +40,19 @@ var createCmd = &cobra.Command{
 		}
 
 		p := &Project{
-			Name:        strings.ToLower(name),
-			Team:        team,
-			Email:       email,
-			Owner:       owner,
-			Service:     service,
-			Application: application,
-			Domain:      domain,
-			CPU:         cpu,
-			Memory:      memory,
+			Name:         strings.ToLower(name),
+			Team:         team,
+			Email:        email,
+			Owner:        owner,
+			Service:      service,
+			Application:  application,
+			Domain:       domain,
+			Namespacevip: namespacevip,
+			Snatip:       snatip,
+			CPU:          cpu,
+			Memory:       memory,
 		}
-		fmt.Println(p)
+		fmt.Println("Create project request for", p)
 
 		basedir := cluster + "/" + buildnumber + "/"
 		if err := p.newProjectDir(basedir); err != nil {
@@ -74,13 +78,15 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	createCmd.Flags().StringP("name", "n", "", "project name (e.g. ingdirect-rc-test)")
-	createCmd.Flags().StringP("owner", "o", "", "project owner")
-	createCmd.Flags().StringP("service", "s", "", "service name")
-	createCmd.Flags().StringP("application", "a", "", "application name")
-	createCmd.Flags().StringP("domain", "d", "", "domain (i.e.business function) name")
-	createCmd.Flags().StringP("team", "t", "", "team name")
-	createCmd.Flags().StringP("email", "e", "", "support contact email")
-	createCmd.Flags().IntP("cpu", "u", 0, "cpu requested capacity")
-	createCmd.Flags().IntP("memory", "m", 0, "memory requested capacity")
+	createCmd.Flags().String("name", "", "project name (e.g. ingdirect-rc-test)")
+	createCmd.Flags().String("owner", "", "project owner")
+	createCmd.Flags().String("service", "", "service name")
+	createCmd.Flags().String("application", "", "application name")
+	createCmd.Flags().String("domain", "", "domain (i.e.business function) name")
+	createCmd.Flags().String("team", "", "team name")
+	createCmd.Flags().String("email", "", "support contact email")
+	createCmd.Flags().String("namespacevip", "", "VIP that has been allocated for the namespace")
+	createCmd.Flags().String("snatip", "", "source NAT ip for the namespace VIP")
+	createCmd.Flags().Int("cpu", 0, "cpu requested capacity")
+	createCmd.Flags().Int("memory", 0, "memory requested capacity")
 }
