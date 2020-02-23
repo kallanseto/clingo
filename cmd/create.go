@@ -73,8 +73,8 @@ func init() {
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
 	// createCmd.PersistentFlags().String("foo", "", "A help for foo")
-	createCmd.PersistentFlags().StringP("cluster", "c", "", "cluster name (e.g. dnocp)")
-	createCmd.PersistentFlags().StringP("buildnumber", "b", "", "build number (e.g. 003)")
+	createCmd.PersistentFlags().String("cluster", "", "cluster name (e.g. dnocp)")
+	createCmd.PersistentFlags().String("buildnumber", "", "build number (e.g. 003)")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:

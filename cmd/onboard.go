@@ -89,6 +89,7 @@ metadata:
     ing.com.au/service: ` + p.Service + `
     ing.com.au/application: ` + p.Application + `
     ing.com.au/domain: ` + p.Domain + `
+    ing.com.au/egressip: ` + p.Egressip + `
     ing.com.au/snatip: ` + p.Snatip + `
     ing.com.au/namespacevip: ` + p.Namespacevip + `
   labels:
