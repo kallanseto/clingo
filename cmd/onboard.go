@@ -83,6 +83,7 @@ func (p Project) writeNamespaceManifest(BASEDIR string) bool {
 kind: Namespace
 metadata:
   annotations:
+    collectord.io/index: openshift_` + p.Name + `
     ing.com.au/team: ` + p.Team + `
     ing.com.au/email: ` + p.Email + `
     ing.com.au/owner: ` + p.Owner + `
