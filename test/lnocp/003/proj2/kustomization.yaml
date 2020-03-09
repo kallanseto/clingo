@@ -1,9 +1,8 @@
-namespace: project4
+namespace: proj2
 commonLabels:
   prometheus: appdeployment
 resources:
   - ../../../common/
   - namespace.yaml
-  - netnamespace.yaml
 patches:
   - resourcequota.yaml

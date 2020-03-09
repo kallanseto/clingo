@@ -1,0 +1,6 @@
+namespace: proj3
+commonLabels:
+  prometheus: appdeployment
+resources:
+  - ../../../common/
+  - namespace.yaml

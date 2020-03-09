@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    collectord.io/index: openshift_proj2
+    ing.com.au/team: team2
+    ing.com.au/email: support2@gmail.com
+    ing.com.au/owner: owner2
+    ing.com.au/service: service2
+    ing.com.au/application: app2
+    ing.com.au/domain: domain2
+    ing.com.au/egressip: 172.24.130.172
+    ing.com.au/snatip: 22.22.22.22
+    ing.com.au/namespacevip: 2.2.2.2
+  labels:
+    application: app2
+    service: service2
+    domain: domain2
+  name: proj2
