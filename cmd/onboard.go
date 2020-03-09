@@ -3,10 +3,8 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"hash/fnv"
 	"io/ioutil"
 	"log"
-	"math/rand"
 	"os"
 	"strconv"
 )
@@ -23,7 +21,6 @@ type Project struct {
 	CPU          int    `json: "cpu"`
 	Memory       int    `json: "memory"`
 	Egressip     string `json: "egressip"`
-	Netid        string `json: "netid"`
 	Snatip       string `json: "snatip"`
 	Namespacevip string `json: "namespacevip"`
 }
@@ -34,16 +31,6 @@ func (p Project) newProjectDir(BASEDIR string) error {
 
 // EgressAllocations type for managing egressIP allocations
 type EgressAllocations map[string]string
-
-func netid(s string) string {
-	h := fnv.New32a()
-	h.Write([]byte(s))
-	i := int(h.Sum32())
-
-	rand.Seed(int64(i))
-
-	return strconv.Itoa(rand.Intn(1000000))
-}
 
 func (p *Project) allocateEgressIP(filename string) {
 	bs, err := ioutil.ReadFile(filename)
@@ -63,7 +50,7 @@ func (p *Project) allocateEgressIP(filename string) {
 	for k, v := range e {
 		if v == "" && !allocated {
 			e[k] = p.Name
-			p.Egressip, p.Netid = k, netid(k)
+			p.Egressip = k
 			allocated = true
 		}
 	}
@@ -106,26 +93,6 @@ metadata:
 	return true
 }
 
-func (p Project) writeNetnamespaceManifest(BASEDIR string) bool {
-	if p.Egressip == "" {
-		return false
-	}
-	m := `apiVersion: network.openshift.io/v1
-egressIPs:
-- ` + p.Egressip + `
-kind: NetNamespace
-metadata:
-  name: ` + p.Name + `
-netname: ` + p.Name + `
-netid: ` + p.Netid
-
-	err := ioutil.WriteFile(BASEDIR+p.Name+"/netnamespace.yaml", []byte(m), 0644)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return true
-}
-
 func (p Project) writeResourceQuota(BASEDIR string) bool {
 	if p.CPU == 0 || p.Memory == 0 {
 		return false
@@ -153,11 +120,6 @@ commonLabels:
 resources:
   - ../../../common/
   - namespace.yaml`
-
-	if p.writeNetnamespaceManifest(BASEDIR) {
-		m += `
-  - netnamespace.yaml`
-	}
 
 	if p.writeResourceQuota(BASEDIR) {
 		m += `
